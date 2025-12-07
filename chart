@@ -5,8 +5,8 @@
 indicator("FT.", overlay=true)
 
 // Input settings for customization
-titleSize = input.string("large", "Title Size", options=["tiny", "small", "normal", "large", "huge"])
-mottoSize = input.string("small", "Motto Size", options=["tiny", "small", "normal", "large", "huge"])
+// titleSize = input.string("large", "Title Size", options=["tiny", "small", "normal", "large", "huge"])
+// mottoSize = input.string("small", "Motto Size", options=["tiny", "small", "normal", "large", "huge"])
 bottomDateSize = input.string("small", "Bottom Date Size", options=["tiny", "small", "normal", "large", "huge"])
 bottomTickerSize = input.string("normal", "Bottom Ticker Size", options=["tiny", "small", "normal", "large", "huge"])
 
