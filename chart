@@ -1,0 +1,38 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © iamflowtrader
+
+//@version=6
+indicator("FT.", overlay=true)
+
+// Input settings for customization
+titleSize = input.string("large", "Title Size", options=["tiny", "small", "normal", "large", "huge"])
+mottoSize = input.string("small", "Motto Size", options=["tiny", "small", "normal", "large", "huge"])
+bottomDateSize = input.string("small", "Bottom Date Size", options=["tiny", "small", "normal", "large", "huge"])
+bottomTickerSize = input.string("normal", "Bottom Ticker Size", options=["tiny", "small", "normal", "large", "huge"])
+
+// Get current ticker and timeframe
+currentTicker = syminfo.ticker
+currentTimeframe = timeframe.period
+
+// Convert size string to size
+getSize(sizeStr) =>
+    switch sizeStr
+        "tiny" => size.tiny
+        "small" => size.small
+        "normal" => size.normal
+        "large" => size.large
+        "huge" => size.huge
+        => size.normal
+
+// Title at top
+// var table titleTable = table.new(position.top_center, 1, 2, bgcolor=color.new(color.white, 100))
+// if barstate.islast
+    // table.cell(titleTable, 0, 0, "LUKE FT.", text_color=color.new(color.black, 0), text_size=getSize(titleSize))
+    // table.cell(titleTable, 0, 1, " MOTTO ", text_color=color.new(color.gray, 0), text_size=getSize(mottoSize))
+
+// Ticker + Timeframe + Date at bottom
+var table bottomTable = table.new(position.bottom_center, 1, 2, bgcolor=color.new(color.white, 100))
+if barstate.islast
+    currentDate = str.format("{0,date,dd/MM/yyyy}", time)
+    table.cell(bottomTable, 0, 0, currentDate, text_color=color.new(color.gray, 0), text_size=getSize(bottomDateSize))
+    table.cell(bottomTable, 0, 1, currentTicker + " | " + currentTimeframe, text_color=color.new(color.gray, 0), text_size=getSize(bottomTickerSize))
